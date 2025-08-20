@@ -25,7 +25,6 @@ Lê os documentos da redução de dados no formato salvo (pode alterar de acordo
     maior valor: 2.2
     
   - saída
-  Arquivo,Maior_foEs
-  arquivo1.SJC,5.70
-  arquivo2.SJC,2.20
+  <img width="128" height="63" alt="image" src="https://github.com/user-attachments/assets/99a3734c-6300-402e-8518-e461a517112a" />
+
 
