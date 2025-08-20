@@ -17,19 +17,19 @@ Lê o documento Excel desejado em busca de registros de tipo 'c' na coluna Es e 
 Lê os documentos da redução de dados no formato salvo (pode alterar de acordo com a estação) e gera uma nova tabela com os maiores valores da frequência total encontrados nos arquivos
 * Exemplo 
   - arquivo1.SJC
-UT LT foEs fbEs
-00 01 3.5 2.1
-01 02 4.2 2.5
-02 03 2.8 1.9
-03 04 5.7 3.0
+  UT LT foEs fbEs
+  00 01 3.5 2.1
+  01 02 4.2 2.5
+  02 03 2.8 1.9
+  03 04 5.7 3.0
     maior valor: 5.7
-- arquivo2.SJC
-UT LT foEs fbEs
-00 01 1.8 0.9
-01 02 2.2 1.0
-02 03 2.0 1.1
+  - arquivo2.SJC
+  UT LT foEs fbEs
+  00 01 1.8 0.9
+  01 02 2.2 1.0
+  02 03 2.0 1.1
     maior valor: 2.2
-- saída
+  - saída
   Arquivo,Maior_foEs
   arquivo1.SJC,5.70
   arquivo2.SJC,2.20
