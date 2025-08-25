@@ -32,3 +32,9 @@ Lê o documento da redução de dados, percorre as colunas Es e conta a quantida
 
 ### inverteplanilha.py
 Troca as linhas por colunas na planilha 
+
+### graficoporano.py
+Faz um gráfico de colunas das ocorrências de camadas E esporádicas divididas por tipo e ano. 
+Demonstração do resultado: 
+<img width="1154" height="736" alt="image" src="https://github.com/user-attachments/assets/772bb698-2218-42d9-8ad5-9f3df32a1b41" />
+
