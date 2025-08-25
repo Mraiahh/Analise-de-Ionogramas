@@ -29,3 +29,6 @@ Lê os documentos da redução de dados no formato salvo (pode alterar de acordo
 
 ### contadorcamadas.cs
 Lê o documento da redução de dados, percorre as colunas Es e conta a quantidade de vezes que cada tipo de camada E esporádica apareceu 
+
+### inverteplanilha.py
+Troca as linhas por colunas na planilha 
