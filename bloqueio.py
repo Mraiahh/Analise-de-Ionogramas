@@ -12,7 +12,7 @@ dados_por_aba = {}
 
 # Loop pelas abas
 for aba in abas:
-    print(f"🔄 Processando aba: {aba}")
+    print(f"Processando aba: {aba}")
     
     # Lê com cabeçalho nas linhas 5 e 6
     df = pd.read_excel(arquivo_entrada, sheet_name=aba, header=[4, 5])
@@ -57,11 +57,12 @@ for aba in abas:
     # Junta tudo horizontalmente com a coluna Time
     df_final = pd.concat([coluna_time] + blocos, axis=1)
     dados_por_aba[aba] = df_final
-    print(f"✅ {aba} processada com {bloco} blocos.")
+    print(f"{aba} processada com {bloco} blocos.")
 
 # Salva tudo num único arquivo com várias abas
 with pd.ExcelWriter(arquivo_saida, engine="openpyxl") as writer:
     for nome, df in dados_por_aba.items():
         df.to_excel(writer, sheet_name=nome, index=False)
 
-print(f"📁 Arquivo salvo em: {arquivo_saida}")
+print(f"Arquivo salvo em: {arquivo_saida}")
+
