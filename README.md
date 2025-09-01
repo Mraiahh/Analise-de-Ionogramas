@@ -15,7 +15,7 @@ Mesma coisa que a de bloqueio, porém ao invés de pegar fbEs, pega a frequênci
 Lê o documento Excel desejado em busca de registros de tipo 'c' na coluna Es e cria dois arquivos com a coluna seguindo a mesma estrutura, porém:
 * O primeiro filtra somente o tipo 'c' de camada E esporádica, substituindo todos os registros diferentes e suas respectivas fbEs para 0,
 * O segundo filtra todos os tipos diferentes e substitui todos os registros de c e suas respectivas fbEs por 0
-* o mesmo ocorre com o arquivo ##filtrocfoEs.py##, porém este pega as respectivas foEs
+* o mesmo ocorre com o arquivo **filtrocfoEs.py**, porém este pega as respectivas foEs
 
 ### maxfoes.cs
 Lê os documentos da redução de dados no formato salvo (pode alterar de acordo com a estação) e gera uma nova tabela com os maiores valores da frequência total encontrados nos arquivos
