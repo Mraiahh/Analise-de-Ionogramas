@@ -8,6 +8,9 @@ Lê as abas do documento Excel e gera um novo arquivo separando somente as colun
 * Es e fbEs três vezes, igual aparece no UDIDA
 * Deixa uma coluna vazia no final para separação dos dias 
 
+### maxima.py
+Mesma coisa que a de bloqueio, porém ao invés de pegar fbEs, pega a frequência máxima foEs.
+
 ### filtrocfbEs.py
 Lê o documento Excel desejado em busca de registros de tipo 'c' na coluna Es e cria dois arquivos com a coluna seguindo a mesma estrutura, porém:
 * O primeiro filtra somente o tipo 'c' de camada E esporádica, substituindo todos os registros diferentes e suas respectivas fbEs para 0,
