@@ -11,7 +11,7 @@ try:
     # --- Arquivo "FiltroC" (mantém 'c', o resto vira 0) ---
     with pd.ExcelWriter("FiltroC_Analysis.xlsx", engine="openpyxl", mode="w") as writer_filtered:
         for sheet in sheet_names:
-            print(f"🔄 Processando aba '{sheet}' para FiltroC...")
+            print(f"Processando aba '{sheet}' para FiltroC...")
             df = excel_file.parse(sheet, header=0)
             
             # Limpa os nomes das colunas de forma dinâmica, removendo espaços e tratando o ponto
@@ -29,7 +29,7 @@ try:
             if len(es_cols) == len(fbes_cols):
                 dynamic_col_map = dict(zip(es_cols, fbes_cols))
                 
-                print(f"✅ Pares de colunas encontrados para esta aba: {dynamic_col_map}")
+                print(f"Pares de colunas encontrados para esta aba: {dynamic_col_map}")
                 
                 for es_col, fbes_col in dynamic_col_map.items():
                     filtered_df[es_col] = filtered_df[es_col].astype(str).str.strip().str.lower()
@@ -84,3 +84,4 @@ except Exception as e:
     print(f"Erro inesperado: {e}")
 
 print("\nProcessamento concluído. Verifique os novos arquivos Excel.")
+
