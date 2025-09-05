@@ -38,13 +38,13 @@ Lê o documento da redução de dados, percorre as colunas Es e conta a quantida
 Troca as linhas por colunas na planilha 
 
 ### graficoporano.py
-Faz um gráfico de colunas das ocorrências de camadas E esporádicas divididas por tipo e ano. 
+Faz um gráfico de colunas das ocorrências de camadas E esporádicas divididas por tipo e ano.  
 Inspirado no gráfico da Figura 3 no artigo ' Abnormal fb Es enhancements in equatorial Es layers during magnetic storms of solar cycle 23' de L.C.A. Resende, C.M. Denardini, I.S. Batista  
 Demonstração do resultado: 
 <img width="1154" height="736" alt="image" src="https://github.com/user-attachments/assets/772bb698-2218-42d9-8ad5-9f3df32a1b41" />
 
 ### grafdaynight.py
-Faz um gráfico de colunas correspondentes ao tipo de camada E esporádica e sua ocorrência dividida em períodos noturnos e diurnos.
+Faz um gráfico de colunas correspondentes ao tipo de camada E esporádica e sua ocorrência dividida em períodos noturnos e diurnos.  
 Inspirado no gráfico da Figura 4 no artigo ' Abnormal fb Es enhancements in equatorial Es layers during magnetic storms of solar cycle 23' de L.C.A. Resende, C.M. Denardini, I.S. Batista  
 Demonstração do resultado:
 <img width="878" height="615" alt="image" src="https://github.com/user-attachments/assets/83054e5a-2a3b-4caf-88a0-6bd3615cf654" />
