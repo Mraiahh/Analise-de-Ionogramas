@@ -31,6 +31,9 @@ Lê os documentos da redução de dados no formato salvo (pode alterar de acordo
   - saída
   <img width="128" height="63" alt="image" src="https://github.com/user-attachments/assets/99a3734c-6300-402e-8518-e461a517112a" />
 
+### maxfbes.py
+Lê os documentos e gera uma nova tabela com o valor máximo da frequência de bloqueio encontrados nos arquivos junto com seu horário em UT
+
 ### contadorcamadas.cs
 Lê o documento da redução de dados, percorre as colunas Es e conta a quantidade de vezes que cada tipo de camada E esporádica apareceu 
 
