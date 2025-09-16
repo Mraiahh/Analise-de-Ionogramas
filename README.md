@@ -52,3 +52,5 @@ Inspirado no gráfico da Figura 4 no artigo ' Abnormal fb Es enhancements in equ
 Demonstração do resultado:
 <img width="878" height="615" alt="image" src="https://github.com/user-attachments/assets/83054e5a-2a3b-4caf-88a0-6bd3615cf654" />
 
+### mediasoutros.py
+Percorre a planilha do Excel (no caso do utilizado, as 4 abas) em busca de registros de letras indicadoras de tipos de camadas E esporádicas e verifica a coluna anterior para pegar o valor da frequência de bloqueio correspondente, calculando a média de ocorrência de cada tipo. 
