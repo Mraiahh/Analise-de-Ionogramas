@@ -55,3 +55,7 @@ Demonstração do resultado:
 
 ### mediasoutros.py
 Percorre a planilha do Excel (no caso do utilizado, as 4 abas) em busca de registros de letras indicadoras de tipos de camadas E esporádicas e verifica a coluna anterior para pegar o valor da frequência de bloqueio correspondente, calculando a média de ocorrência de cada tipo. 
+
+### grafsazonal.py
+Lê os quatro arquivos de cada estação do ano, processa o cálculo e faz o gráfico em barras.
+Inspirado no gráfico da Figura 42  da Tese do Marcelo Henrique Duarte Silva
