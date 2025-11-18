@@ -50,7 +50,8 @@ Demonstração do resultado:
 Faz um gráfico de colunas correspondentes ao tipo de camada E esporádica e sua ocorrência dividida em períodos noturnos e diurnos.  
 Inspirado no gráfico da Figura 4 no artigo ' Abnormal fb Es enhancements in equatorial Es layers during magnetic storms of solar cycle 23' de L.C.A. Resende, C.M. Denardini, I.S. Batista  
 Demonstração do resultado:
-<img width="878" height="615" alt="image" src="https://github.com/user-attachments/assets/83054e5a-2a3b-4caf-88a0-6bd3615cf654" />
+<img width="877" height="612" alt="image" src="https://github.com/user-attachments/assets/0e4cb6b5-d882-4eab-a51d-3af1834b6462" />
+
 
 ### mediasoutros.py
 Percorre a planilha do Excel (no caso do utilizado, as 4 abas) em busca de registros de letras indicadoras de tipos de camadas E esporádicas e verifica a coluna anterior para pegar o valor da frequência de bloqueio correspondente, calculando a média de ocorrência de cada tipo. 
