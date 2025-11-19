@@ -57,5 +57,8 @@ Demonstração do resultado:
 Percorre a planilha do Excel (no caso do utilizado, as 4 abas) em busca de registros de letras indicadoras de tipos de camadas E esporádicas e verifica a coluna anterior para pegar o valor da frequência de bloqueio correspondente, calculando a média de ocorrência de cada tipo. 
 
 ### grafsazonal.py
-Lê os quatro arquivos de cada estação do ano, processa o cálculo e faz o gráfico em barras.
-Inspirado no gráfico da Figura 42  da Tese do Marcelo Henrique Duarte Silva
+Lê os quatro arquivos de cada estação do ano, processa o cálculo e faz o gráfico em barras de ocorrência dos tipos de camada por ano, com cores diferentes para cada tipo.
+Inspirado no gráfico da Figura 42  da Tese do Marcelo Henrique Duarte Silva.
+Demonstração do resultado:
+<img width="1500" height="1200" alt="ocorrencia_anual_sazonal_agrupado_normalizado" src="https://github.com/user-attachments/assets/35a9afca-156e-4d84-9af8-90acd1e17aea" />
+
