@@ -60,5 +60,6 @@ Percorre a planilha do Excel (no caso do utilizado, as 4 abas) em busca de regis
 Lê os quatro arquivos de cada estação do ano, processa o cálculo e faz o gráfico em barras de ocorrência dos tipos de camada por ano, com cores diferentes para cada tipo.
 Inspirado no gráfico da Figura 42  da Tese do Marcelo Henrique Duarte Silva.
 Demonstração do resultado:
-<img width="1500" height="1200" alt="ocorrencia_anual_sazonal_agrupado_normalizado" src="https://github.com/user-attachments/assets/35a9afca-156e-4d84-9af8-90acd1e17aea" />
+<img width="1500" height="1200" alt="ocorrencia_anual_sazonal_agrupado_normalizado" src="https://github.com/user-attachments/assets/f0a23669-fdcd-4909-a9f6-1d71d29bdd53" />
+
 
