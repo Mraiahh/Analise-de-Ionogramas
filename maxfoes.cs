@@ -19,7 +19,6 @@ class MaxFoesBatch
         {
             string caminhoTrimado = caminho.Trim();
 
-            // Verifica se é .SJC ou .PAL
             string extensao = Path.GetExtension(caminhoTrimado).ToLower();
             if (extensao != ".sjc" && extensao != ".pal" && extensao != ".txt")
             {
@@ -85,10 +84,10 @@ class MaxFoesBatch
             }
         }
 
-        // Salvar CSV
         string caminhoCsv = Path.Combine(Directory.GetCurrentDirectory(), "tabela_maiores5_foEs.csv");
         File.WriteAllLines(caminhoCsv, resultados);
 
         Console.WriteLine($"\nCSV gerado com sucesso: {caminhoCsv}");
     }
 }
+
