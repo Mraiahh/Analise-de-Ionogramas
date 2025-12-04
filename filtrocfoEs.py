@@ -13,19 +13,15 @@ try:
         for sheet in sheet_names:
             print(f"Processando aba '{sheet}' para FiltroC...")
             df = excel_file.parse(sheet, header=0)
-            
-            # Limpa os nomes das colunas de forma dinâmica, removendo espaços e tratando o ponto
+        
             new_columns = [re.sub(r'\s*\.\s*', '.', col).strip() for col in df.columns.astype(str)]
             df.columns = new_columns
 
             filtered_df = df.copy()
 
-            # Encontra todas as colunas Es e foEs de forma dinâmica
             es_cols = sorted([col for col in filtered_df.columns if col.startswith('Es.') or col == 'Es'])
             foes_cols = sorted([col for col in filtered_df.columns if col.startswith('foEs.') or col == 'foEs'])
             
-            # Garante que os pares estão corretos e na mesma ordem
-            # A lógica é baseada na ideia de que para cada 'Es.N' existe um 'foEs.N' correspondente
             if len(es_cols) == len(foes_cols):
                 dynamic_col_map = dict(zip(es_cols, foes_cols))
                 
@@ -50,13 +46,11 @@ try:
             print(f"\nProcessando aba '{sheet}' para FiltroNaoC...")
             df = excel_file.parse(sheet, header=0)
             
-            # Limpa os nomes das colunas de forma dinâmica
             new_columns = [re.sub(r'\s*\.\s*', '.', col).strip() for col in df.columns.astype(str)]
             df.columns = new_columns
             
             replaced_df = df.copy()
 
-            # Encontra todas as colunas Es e foEs de forma dinâmica
             es_cols = sorted([col for col in replaced_df.columns if col.startswith('Es.') or col == 'Es'])
             foes_cols = sorted([col for col in replaced_df.columns if col.startswith('foEs.') or col == 'foEs'])
             
@@ -82,5 +76,6 @@ except FileNotFoundError:
     print(f"Erro: O arquivo '{file_name}' não foi encontrado.")
 except Exception as e:
     print(f"Erro inesperado: {e}")
+
 
 print("\nProcessamento concluído. Verifique os novos arquivos Excel.")
