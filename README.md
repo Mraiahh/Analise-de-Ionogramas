@@ -62,4 +62,9 @@ Inspirado no gráfico da Figura 42  da Tese do Marcelo Henrique Duarte Silva.
 Demonstração do resultado:
 <img width="1500" height="1200" alt="ocorrencia_anual_sazonal_agrupado_normalizado" src="https://github.com/user-attachments/assets/f0a23669-fdcd-4909-a9f6-1d71d29bdd53" />
 
+### graficofases.py
+Percorre as colunas do arquivo inserido e procura pela coluna indicadora da fase da tempestade. Ao encontrar, organiza os dados em duas colunas: a correspondente à fase inicial e principal, e a correspondente à fase de recuperação. 
+Inspirado no gráfico da Figura 5 no artigo ' Abnormal fb Es enhancements in equatorial Es layers during magnetic storms of solar cycle 23' de L.C.A. Resende, C.M. Denardini, I.S. Batista  
+<img width="714" height="609" alt="image" src="https://github.com/user-attachments/assets/f5f73625-e2b5-4016-b17c-9258513757d8" />
+
 
