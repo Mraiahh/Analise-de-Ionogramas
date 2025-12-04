@@ -12,11 +12,11 @@ def Teste():
     caminhos = [caminho.strip() for caminho in entrada.split(',') if caminho.strip()]
 
     resultados = []
-    # Adiciona as colunas 'UT' e 'Es' ao cabeçalho do arquivo de saída
+
     resultados.append("Arquivo,Maior_fbEs,UT_Correspondente,tipo_Es")
 
     for caminho_trimado in caminhos:
-        # Verifica se é .SJC, .PAL ou .TXT
+
         extensao = os.path.splitext(caminho_trimado)[1].lower()
         if extensao not in ['.sjc', '.pal', '.txt']:
             print(f"Arquivo ignorado (extensão inválida): {os.path.basename(caminho_trimado)}")
@@ -58,7 +58,6 @@ def Teste():
             for i in range(3, len(linhas)):
                 valores = linhas[i].strip().split()
                 
-                # Verifica se a linha tem valores suficientes para todas as colunas
                 if len(valores) > indice_fbes and len(valores) > indice_ut and len(valores) > indice_tipo:
                     valor_fbes_str = valores[indice_fbes].replace(',', '.')
                     
@@ -69,7 +68,6 @@ def Teste():
                             ut_correspondente = valores[indice_ut]
                             tipo_correspondente = valores[indice_tipo] # Linha corrigida
                     except ValueError:
-                        # Ignora linhas com valores não numéricos em 'fbEs'
                         pass
 
             nome_arquivo = os.path.basename(caminho_trimado)
@@ -81,13 +79,12 @@ def Teste():
         except Exception as ex:
             print(f"Erro no arquivo {os.path.basename(caminho_trimado)}: {ex}")
 
-    # Salvar CSV
     caminho_csv = os.path.join(os.getcwd(), "tabela_fbes_maximos4.csv")
     with open(caminho_csv, 'w', encoding='utf-8') as f:
         f.write('\n'.join(resultados))
 
     print(f"\nCSV gerado com sucesso: {caminho_csv}")
 
-# Para executar o código, chame a função Teste()
 if __name__ == "__main__":
+
     Teste()
