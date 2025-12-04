@@ -1,24 +1,19 @@
 import pandas as pd
 
-# Caminho do arquivo
 arquivo_entrada = r"C:\Users\aluno\Downloads\SJCWorksheet_08to09.xlsx"
 arquivo_saida = r"C:\ProjetoIonograma\SJCWorksheet_foEs.xlsx"
 
-# Abas com os dados
 abas = ["SJC-Summer", "SJC-Autumn", "SJC-Winter", "SJC-Spring"]
 
-# Armazena os DataFrames prontos por aba
 dados_por_aba = {}
 
-# Loop pelas abas
 for aba in abas:
     print(f"Processando aba: {aba}")
-    
-    # Lê com cabeçalho nas linhas 5 e 6 (MultiIndex nas colunas)
+
     df = pd.read_excel(arquivo_entrada, sheet_name=aba, header=[4, 5])
     
     blocos = []
-    bloco = 0  # contador de blocos
+    bloco = 0  
 
     while True:
         try:
@@ -42,12 +37,10 @@ for aba in abas:
 
                 bloco_par = df.iloc[:, [fo_idx, es_idx]].copy()
 
-                # Preserva os nomes originais do Excel (nível 1 do cabeçalho)
                 bloco_par.columns = [col[1] if col[1] != "" else col[0] for col in bloco_par.columns]
 
                 pares.append(bloco_par)
 
-            # Junta UT, LT, pares e separador
             bloco_completo = pd.concat([ut, lt] + pares, axis=1)
             bloco_completo[""] = ""
             blocos.append(bloco_completo.reset_index(drop=True))
@@ -55,15 +48,14 @@ for aba in abas:
         except Exception:
             break
 
-    # Junta tudo horizontalmente
     df_final = pd.concat(blocos, axis=1)
     dados_por_aba[aba] = df_final
 
     print(f"{aba} processada com {bloco} blocos.")
 
-# Salva tudo num único arquivo com várias abas
 with pd.ExcelWriter(arquivo_saida, engine="openpyxl") as writer:
     for nome, df in dados_por_aba.items():
         df.to_excel(writer, sheet_name=nome, index=False)
 
 print(f"Arquivo salvo em: {arquivo_saida}")
+
