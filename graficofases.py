@@ -5,7 +5,6 @@ import os
 import unicodedata
 import sys
 
-# CORES POR TIPO Es
 ES_COLORS = {
     'l': '#1f77b4',
     'f': '#ff7f0e',
@@ -57,7 +56,6 @@ else:
 df.columns = df.columns.str.strip().str.lower()
 df.columns = [normalize_text(c) for c in df.columns]
 
-#identifica a coluna de fases
 phase_cols = [c for c in df.columns if 'fase' in c]
 if not phase_cols:
     raise ValueError("Coluna de fase da tempestade não encontrada.")
