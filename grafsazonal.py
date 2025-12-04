@@ -4,24 +4,17 @@ import numpy as np
 import os
 from collections import OrderedDict
 
-# -------------------------------------------------------------
-# 1. DEFINIÇÕES GLOBAIS (CORES E ORDEM SAZONAL)
-# -------------------------------------------------------------
-
-# Mapeamento dos tipos de camada para CORES fixas e seus rótulos
 ES_COLORS = {
     '$Es_l$': '#1f77b4',  # Azul (l)
     '$Es_f$': '#ff7f0e',  # Laranja (f)
     '$Es_c$': '#2ca02c',  # Verde (c)
     '$Es_s$': '#9467bd',  # Roxo (s)
-    '$Es_a$': '#8c564b',  # Marrom (a) <-- Corrigido o mapping de cor
-    '$Es_h$': '#d62728',  # Vermelho (h) <-- Corrigido o mapping de cor
+    '$Es_a$': '#8c564b',  # Marrom (a) 
+    '$Es_h$': '#d62728',  # Vermelho (h)
 }
 
-# Colunas de tipos de camada conforme a sua tabela (formato largo)
 ES_TYPE_COLUMNS = ['f', 'l', 'c', 's', 'a', 'h']
 
-# Ordem das estações para plotagem (nomes dos subplots)
 STATION_NAMES = [
     'Verão',
     'Equinócio de Outono (Março)',
@@ -29,9 +22,6 @@ STATION_NAMES = [
     'Equinócio de Primavera (Setembro)',
 ]
 
-# -------------------------------------------------------------
-# 2. ENTRADA INTERATIVA DOS ARQUIVOS (MANTIDO)
-# -------------------------------------------------------------
 
 FILES_TO_PROCESS = OrderedDict()
 print("Por favor, insira o caminho completo dos 4 arquivos Excel (.xlsx).")
@@ -67,14 +57,11 @@ while True:
     else:
         continue
 
-# -------------------------------------------------------------
-# 3. FUNÇÃO DE PROCESSAMENTO E PLOTAGEM (AGRUPADA, NORMALIZADA)
-# -------------------------------------------------------------
+# função de processamento e plotagem
 
 def process_and_plot_grouped(ax, file_path, title, es_colors, es_type_cols):
     """Lê, calcula a taxa de ocorrência (% do total do ano) e plota o gráfico agrupado."""
     
-    # --- 1. LEITURA DE EXCEL (XLSX) ---
     try:
         df = pd.read_excel(file_path, header=0) 
             
@@ -82,7 +69,6 @@ def process_and_plot_grouped(ax, file_path, title, es_colors, es_type_cols):
         print(f"ERRO FATAL ao ler {title} em {file_path}: {e}")
         return None, None 
 
-    # --- 2. PREPARAÇÃO E LIMPEZA DE COLUNAS ---
     df.columns = df.columns.str.strip().str.lower()
     
     try:
@@ -98,8 +84,7 @@ def process_and_plot_grouped(ax, file_path, title, es_colors, es_type_cols):
 
     for col in es_type_cols:
          df[col] = pd.to_numeric(df[col].astype(str).str.replace(',', '.', regex=True), errors='coerce').fillna(0)
-    
-    # --- 3. EXTRAÇÃO DO ANO E TRANSFORMAÇÃO PARA LONGO ---
+
     df['Ano'] = pd.to_datetime(df[date_column], errors='coerce', dayfirst=True).dt.year
     df['Ano'] = df['Ano'].astype('Int64')
     df.dropna(subset=['Ano'], inplace=True)
@@ -119,8 +104,6 @@ def process_and_plot_grouped(ax, file_path, title, es_colors, es_type_cols):
     df_long['es_type'] = df_long['es_type_code'].map(es_type_mapping)
     
     df_long = df_long[df_long['Contagem'] > 0].dropna(subset=['es_type'])
-
-    # --- 4. CÁLCULO DA TAXA DE OCORRÊNCIA (NORMALIZADO PARA 100% POR ANO) ---
     
     counts = df_long.groupby(['Ano', 'es_type'])['Contagem'].sum().unstack(fill_value=0)
     total_per_year = counts.sum(axis=1)
@@ -133,8 +116,6 @@ def process_and_plot_grouped(ax, file_path, title, es_colors, es_type_cols):
     
     all_es_types = list(es_colors.keys())
     data_to_plot = occurrence_percentage.reindex(columns=all_es_types, fill_value=0)
-
-    # --- 5. PLOTAGEM (Gráfico Agrupado) ---
     
     num_types = len(all_es_types) 
     bar_width = 0.8 / num_types 
@@ -142,13 +123,11 @@ def process_and_plot_grouped(ax, file_path, title, es_colors, es_type_cols):
     x = np.arange(len(data_to_plot.index)) # Posição de cada ano
     
     legend_handles = []
-    
-    # O loop plota cada tipo de camada deslocado lateralmente
+ 
     for i, es_type in enumerate(all_es_types):
         color = es_colors.get(es_type, 'grey')
         values = data_to_plot[es_type]
         
-        # Posição da barra: centraliza o grupo (x) e desloca a barra atual
         pos = x + (i - (num_types - 1) / 2) * bar_width
         
         bar = ax.bar(
@@ -168,10 +147,6 @@ def process_and_plot_grouped(ax, file_path, title, es_colors, es_type_cols):
     
     return legend_handles, all_es_types
 
-# -------------------------------------------------------------
-# 4. MONTAGEM DA FIGURA FINAL
-# -------------------------------------------------------------
-
 fig, axes = plt.subplots(2, 2, figsize=(15, 12), sharey=True) 
 axes_flat = axes.flatten()
 
@@ -180,11 +155,9 @@ print("\nProcessando arquivos...")
 all_handles = []
 all_labels = []
 
-# Loop para processar e plotar cada estação
 for i, ((title, filename), ax) in enumerate(zip(FILES_TO_PROCESS.items(), axes_flat)):
     print(f"-> Processando estação: {title}")
     
-    # Usa a função process_and_plot_grouped
     handles, labels = process_and_plot_grouped(ax, filename, title, ES_COLORS, ES_TYPE_COLUMNS)
 
     if handles is not None:
@@ -192,7 +165,6 @@ for i, ((title, filename), ax) in enumerate(zip(FILES_TO_PROCESS.items(), axes_f
             all_handles = handles
             all_labels = labels
 
-# --- AJUSTES FINAIS DA FIGURA ---
 if all_handles:
     fig.legend(
         all_handles, 
@@ -210,4 +182,4 @@ fig.text(0.04, 0.5, 'Taxa de Ocorrência do Tipo de Camada (%)', va='center', ro
 
 plt.tight_layout(rect=[0.05, 0.05, 1, 0.9]) 
 plt.savefig('ocorrencia_anual_sazonal_agrupado_normalizado.png')
-print("\nGráfico final 'ocorrencia_anual_sazonal_agrupado_normalizado.png' salvo com sucesso! ✅")
+print("\nGráfico final 'ocorrencia_anual_sazonal_agrupado_normalizado.png' salvo com sucesso!")
