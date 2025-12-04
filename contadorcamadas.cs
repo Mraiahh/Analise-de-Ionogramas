@@ -31,9 +31,9 @@ class Programa
                 return;
             }
 
-            // A linha do cabeçalho está na terceira linha (índice 2)
+            // a linha do cabeçalho está na terceira linha (índice 2)
             string cabecalho = linhas[2];
-            // Assumindo que o arquivo é separado por espaços ou tabulações:
+
             string[] colunas = cabecalho.Split(new char[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
 
             int indiceEs = Array.IndexOf(colunas, "Es");
@@ -43,7 +43,7 @@ class Programa
                 return;
             }
 
-            // Agora percorre as linhas seguintes, a partir da linha 4 (índice 3)
+            // percorre as linhas seguintes, a partir da linha 4 (índice 3)
             for (int i = 3; i < linhas.Length; i++)
             {
                 string[] valores = linhas[i].Split(new char[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
@@ -57,14 +57,12 @@ class Programa
                 }
             }
 
-            // Mostrar no console
             Console.WriteLine("\nContagem de tipos de camada Es:");
             foreach (var par in contagemTipos)
             {
                 Console.WriteLine($"{par.Key}: {par.Value}");
             }
 
-            // Exportar para CSV
             string caminhoCsv = Path.Combine(Path.GetDirectoryName(caminhoArquivo), "resultado_camadas.csv");
             using (StreamWriter sw = new StreamWriter(caminhoCsv))
             {
@@ -83,3 +81,4 @@ class Programa
         }
     }
 }
+
