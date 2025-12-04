@@ -5,9 +5,6 @@ import os
 import unicodedata
 import sys
 
-# --------------------
-# CORES POR TIPO Es
-# --------------------
 ES_COLORS = {
     'l': '#1f77b4',
     'f': '#ff7f0e',
@@ -18,17 +15,12 @@ ES_COLORS = {
 }
 ES_TYPES = ['l', 'f', 'c', 's', 'a', 'h']
 
-# --------------------
-# Ler caminho
-# --------------------
 file_path = input("Digite o caminho do arquivo (CSV ou XLSX): ").strip()
 if not os.path.exists(file_path):
     print("Arquivo não encontrado:", file_path)
     sys.exit(1)
 
-# --------------------
-# Função utilitária
-# --------------------
+#função utilitária
 def normalize_text(s):
     if pd.isna(s):
         return s
@@ -37,14 +29,9 @@ def normalize_text(s):
     s = ''.join(ch for ch in s if not unicodedata.combining(ch))
     return s
 
-# --------------------
-# Ler arquivo conforme extensão
-# Leitura corrigida para erros de encoding
-# --------------------
 ext = os.path.splitext(file_path)[1].lower()
 
 if ext in ['.xls', '.xlsx']:
-    # MUDANÇA AQUI: Usa a 3ª linha (índice 2) como cabeçalho
     df = pd.read_excel(file_path, header=2) 
 
 elif ext == '.csv':
@@ -65,23 +52,14 @@ elif ext == '.csv':
 else:
     raise ValueError("Formato não suportado. Use CSV ou XLSX.")
 
-# --------------------
-# Padronizar colunas
-# --------------------
 df.columns = df.columns.str.strip().str.lower()
 df.columns = [normalize_text(c) for c in df.columns]
 
-# --------------------
-# Identificar coluna de fase
-# --------------------
 intensity_cols = [c for c in df.columns if 'intensidade' in c]
 if not intensity_cols:
     raise ValueError("Coluna de intensidade da tempestade não encontrada.")
 intensity_col = intensity_cols[0]
 
-# --------------------
-# Garantir colunas de tipo
-# --------------------
 existing = set(df.columns)
 ES_present = []
 for t in ES_TYPES:
@@ -91,16 +69,10 @@ for t in ES_TYPES:
         df[t] = 0  # cria se faltar
         ES_present.append(t)
 
-# --------------------
-# Converter tipos para número
-# --------------------
 for t in ES_present:
     df[t] = df[t].astype(str).str.replace(',', '.', regex=False)
     df[t] = pd.to_numeric(df[t], errors='coerce').fillna(0)
 
-# --------------------
-# Normalizar coluna de fase
-# --------------------
 df[intensity_col] = df[intensity_col].apply(normalize_text)
 
 intensity_map = {
@@ -112,9 +84,7 @@ df['intensidade_padrao'] = df[intensity_col].map(lambda x: intensity_map.get(x, 
 
 intensity_order = [ 'moderada', 'forte', 'intensa']
 
-# --------------------
-# Calcular frequências (%)
-# --------------------
+#cálculo das frequências
 results = {}
 for intensity in intensity_order:
     subset = df[df['intensidade_padrao'] == intensity]
@@ -128,9 +98,6 @@ for intensity in intensity_order:
 
 plot_df = pd.DataFrame(results).T.fillna(0)[ES_TYPES]
 
-# --------------------
-# PLOT
-# --------------------
 fig, ax = plt.subplots(figsize=(7, 6))
 
 bottom = np.zeros(len(plot_df))
@@ -147,7 +114,6 @@ ax.set_ylabel('Taxa de Ocorrência do Tipo de Camada (%)', fontsize=12)
 ax.set_ylim(0, 100)
 #ax.grid(axis='y', linestyle='--', linewidth=0.6, alpha=0.7)
 
-# legenda horizontal
 # legenda horizontal fora do gráfico
 ax.legend(
     loc='upper center',            # Posição de ancoragem da legenda (no centro acima do ponto de ancoragem)
@@ -158,7 +124,6 @@ ax.legend(
     title='Tipos de Camadas Es'
 )
 
-# ATENÇÃO: É fundamental usar o plt.tight_layout() APÓS a legenda para garantir que ela caiba na imagem.
 plt.tight_layout()
 plt.savefig("fbEs_intensidade_empilhado.png", dpi=300)
 print("Gráfico salvo como fbEs_intensidade_empilhado.png")
