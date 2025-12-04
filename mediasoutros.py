@@ -3,7 +3,6 @@ import numpy as np
 import os
 import re
 
-# --------- CONFIGURE AQUI ----------
 entrada = r"C:\ProjetoIonograma\arquivos Louis\FiltroNonC_fbEsAnalysis.xlsx"
 saida = os.path.splitext(entrada)[0] + "_medias_corrigido_v2.xlsx"
 # Adicione "il" aqui se quiser suportar esse tipo multi-letra
@@ -11,7 +10,6 @@ tipos = ["f", "a", "h", "l", "s", "il"]
 MAX_OFFSET = 3
 NUM_PROP_THRESHOLD = 0.12
 TYPE_OCC_THRESHOLD = 3
-# -----------------------------------
 
 def extract_types(cell, tipos_set):
     """
@@ -29,17 +27,16 @@ def extract_types(cell, tipos_set):
         if tok in tipos_set:
             found.append(tok)
             continue
-        # detectar tipos multi-letra como substring (ex: '...il...')
+
         for typ in tipos_set:
             if len(typ) > 1 and typ in tok and typ not in found:
                 found.append(typ)
-        # detectar letras únicas dentro do token (compatibilidade com versão anterior)
+
         for ch in tok:
             if ch in tipos_set and ch not in found:
                 found.append(ch)
     return found
 
-# carrega todas as abas
 xls = pd.read_excel(entrada, sheet_name=None)
 resultados = {}
 
@@ -55,7 +52,6 @@ for sheet_name, df in xls.items():
 
     tipos_set = set(tipos)
 
-    # 1) Detecta colunas de tipo
     type_cols = []
     type_details = {}
     for c in df.columns:
@@ -73,20 +69,17 @@ for sheet_name, df in xls.items():
         type_cols = [c for c in df.columns if re.search(r'\bes\b', c, re.I)]
         print("Fallback: usando colunas com 'Es':", type_cols)
 
-    # 2) Mapeamento type_col -> fb_col (coluna mais próxima numericamente adequada)
     mapping = {}
     for type_col in type_cols:
         col_idx = df.columns.get_loc(type_col)
         fb_col = None
 
-        # tenta a coluna imediatamente à esquerda (sempre preferida se tiver algum número)
         if col_idx > 0:
             candidate = df.columns[col_idx - 1]
             num_series = pd.to_numeric(df[candidate], errors="coerce")
             if num_series.notna().any():
                 fb_col = candidate
 
-        # se não encontrou na esquerda, procura em offsets (próximas colunas) respeitando threshold
         if not fb_col:
             offsets = []
             for k in range(1, MAX_OFFSET + 1):
@@ -118,9 +111,8 @@ for sheet_name, df in xls.items():
     for fb in fb_cols:
         df[fb] = pd.to_numeric(df[fb], errors="coerce")
 
-    # 3) cálculo linha a linha — IMPORTANTES REGRAS AQUI:
-    #   - se o fb_col mapeado estiver NaN naquela linha, IGNORA (não busca outro)
-    #   - se duas type_cols apontarem para o mesmo fb_col, conta esse fb_col apenas 1 vez naquela linha
+    #  se o fb_col mapeado estiver NaN naquela linha, IGNORA (não busca outro)
+    #  se duas type_cols apontarem para o mesmo fb_col, conta esse fb_col apenas 1 vez naquela linha
     medias = pd.DataFrame({ut_col: df[ut_col].values})
     counts = pd.DataFrame({ut_col: df[ut_col].values})
     contribs = pd.DataFrame({ut_col: df[ut_col].values})
@@ -133,11 +125,9 @@ for sheet_name, df in xls.items():
             for type_col, fb_col in mapping.items():
                 t_vals = extract_types(df.at[row_idx, type_col], tipos_set)
                 if t in t_vals:
-                    # se já usamos este fb_col nesta linha, pula (evita contar 2x)
                     if fb_col in seen_fb_cols:
                         continue
                     v = df.at[row_idx, fb_col]
-                    # regra: se v for NaN, IGNORA (não busca outro valor)
                     if pd.notna(v):
                         try:
                             vf = float(v)
@@ -145,10 +135,8 @@ for sheet_name, df in xls.items():
                             contrib_list.append(f"{type_col}->{fb_col}:{vf}")
                             seen_fb_cols.add(fb_col)
                         except:
-                            # se não converter, ignora
                             pass
                     else:
-                        # explicitamente ignorado — não procura "ultimo caso" nem faz fill
                         pass
             if vals:
                 medias.loc[row_idx, t] = sum(vals) / len(vals)
@@ -159,13 +147,11 @@ for sheet_name, df in xls.items():
                 counts.loc[row_idx, t + "_count"] = 0
                 contribs.loc[row_idx, t + "_contribs"] = ""
 
-    # debug/resumo
     print("Resumo por tipo (linhas com pelo menos 1 valor):")
     for t in tipos:
         nlines = (counts[t + "_count"] > 0).sum()
         print(f"  {t}: {nlines} linhas")
 
-    # exemplos das primeiras linhas
     n_examples = min(6, len(df))
     print("\nExemplos iniciais (UT | contribs | medias):")
     for i in range(n_examples):
@@ -183,9 +169,9 @@ for sheet_name, df in xls.items():
 
     resultados[sheet_name] = out
 
-# salva
 with pd.ExcelWriter(saida) as writer:
     for name, df_out in resultados.items():
         df_out.to_excel(writer, sheet_name=name, index=False)
 
 print("\nArquivo salvo em:", saida)
+
