@@ -200,7 +200,7 @@ if all_handles:
         loc='upper center', 
         bbox_to_anchor=(0.5, 0.98), 
         ncol=len(all_labels),
-        title='Taxa de Ocorrência dos Tipos de Camadas Esporádicas ($E_s$)',
+        title='Tipos de Camadas Es',
         frameon=False,
         fontsize=10
     )
