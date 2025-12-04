@@ -67,4 +67,8 @@ Percorre as colunas do arquivo inserido e procura pela coluna indicadora da fase
 Inspirado no gráfico da Figura 5 no artigo ' Abnormal fb Es enhancements in equatorial Es layers during magnetic storms of solar cycle 23' de L.C.A. Resende, C.M. Denardini, I.S. Batista  
 <img width="714" height="609" alt="image" src="https://github.com/user-attachments/assets/f5f73625-e2b5-4016-b17c-9258513757d8" />
 
+### grafintensidade.py
+Percorre as colunas, procura a coluna de intensidade e divide os gráficos em três colunas correspondentes aos níveis fraco, moderado e intenso. 
+<img width="2100" height="1800" alt="fbEs_fases_empilhado" src="https://github.com/user-attachments/assets/e2d897a0-02fc-455d-8a9b-ea464ddc4fd0" />
+
 
