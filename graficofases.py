@@ -125,7 +125,7 @@ ax.set_ylim(0, 100)
 ax.legend(
     loc='upper center',            # Posição de ancoragem da legenda (no centro acima do ponto de ancoragem)
     bbox_to_anchor=(0.5, -0.15),  # Coordenadas (x, y) relativas ao eixo. 0.5 é o centro, -0.15 é abaixo do eixo X.
-    ncol=6,                        # Número de colunas para organizar a legenda (opcional, pode ser 2 ou 3)
+    ncol=6,                        # Número de colunas para organizar a legenda 
     frameon=True,
     edgecolor='black',
     title='Es types'
