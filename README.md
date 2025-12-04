@@ -65,11 +65,13 @@ Demonstração do resultado:
 ### graficofases.py
 Percorre as colunas do arquivo inserido e procura pela coluna indicadora da fase da tempestade. Ao encontrar, organiza os dados em duas colunas: a correspondente à fase inicial e principal, e a correspondente à fase de recuperação. 
 Inspirado no gráfico da Figura 5 no artigo ' Abnormal fb Es enhancements in equatorial Es layers during magnetic storms of solar cycle 23' de L.C.A. Resende, C.M. Denardini, I.S. Batista  
-<img width="2100" height="1800" alt="fbEs_fases_empilhado" src="https://github.com/user-attachments/assets/e2d897a0-02fc-455d-8a9b-ea464ddc4fd0" />
+<img width="1500" height="1200" alt="fbEs_fases_empilhado" src="https://github.com/user-attachments/assets/e2d897a0-02fc-455d-8a9b-ea464ddc4fd0" />
 
 ### grafintensidade.py
 Percorre as colunas, procura a coluna de intensidade e divide os gráficos em três colunas correspondentes aos níveis fraco, moderado e intenso. 
-<img width="2100" height="1800" alt="fbEs_intensidade_empilhado" src="https://github.com/user-attachments/assets/9071ef4d-4ed8-4e77-a41a-a52c2a49a244" />
+<img width="1500" height="1200" alt="fbEs_intensidade_empilhado" src="https://github.com/user-attachments/assets/9071ef4d-4ed8-4e77-a41a-a52c2a49a244" />
 
-
+### grafchoque.py
+Percorre as colunas, procura a coluna de choque e divide os gráficos em três colunas correspondentes aos tipos ICME, CIR e SIR. 
+<img width="1500" height="1200" alt="fbEs_choque_empilhado" src="https://github.com/user-attachments/assets/c054e78b-349d-4d41-8939-121e7e7ac575" />
 
