@@ -75,3 +75,7 @@ Percorre as colunas, procura a coluna de intensidade e divide os gráficos em tr
 Percorre as colunas, procura a coluna de choque e divide os gráficos em três colunas correspondentes aos tipos ICME, CIR e SIR. 
 <img width="1500" height="1200" alt="fbEs_choque_empilhado" src="https://github.com/user-attachments/assets/c054e78b-349d-4d41-8939-121e7e7ac575" />
 
+### grafanualesolar.py
+Lê o arquivo, faz o gráfico de colunas empilhado separado por anos e plota a curva do f10.7 de forma flúida, suavizada com kernel gaussiano.
+Inspirado no gráfico da Figura 3 no artigo ' Abnormal fb Es enhancements in equatorial Es layers during magnetic storms of solar cycle 23' de L.C.A. Resende, C.M. Denardini, I.S. Batista  
+<img width="1200" height="600" alt="anual e f10 7" src="https://github.com/user-attachments/assets/a1648a3c-f2b1-4b97-8181-6e9b51d140e9" />
