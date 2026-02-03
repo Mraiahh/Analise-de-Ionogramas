@@ -69,11 +69,11 @@ Inspirado no gráfico da Figura 5 no artigo ' Abnormal fb Es enhancements in equ
 
 ### grafintensidade.py
 Percorre as colunas, procura a coluna de intensidade e divide os gráficos em três colunas correspondentes aos níveis fraco, moderado e intenso. 
-<img width="1500" height="1200" alt="fbEs_intensidade_empilhado" src="https://github.com/user-attachments/assets/9071ef4d-4ed8-4e77-a41a-a52c2a49a244" />
+<img width="1280" height="919" alt="graf intensidade" src="https://github.com/user-attachments/assets/19cad071-813f-4006-9c21-fcd3c24598b6" />
 
 ### grafchoque.py
 Percorre as colunas, procura a coluna de choque e divide os gráficos em três colunas correspondentes aos tipos ICME, CIR e SIR. 
-<img width="1500" height="1200" alt="fbEs_choque_empilhado" src="https://github.com/user-attachments/assets/c054e78b-349d-4d41-8939-121e7e7ac575" />
+<img width="700" height="600" alt="graf choque" src="https://github.com/user-attachments/assets/f46f53d7-2005-4a53-8ba0-b49e315a7b46" />
 
 ### grafanualesolar.py
 Lê o arquivo, faz o gráfico de colunas empilhado separado por anos e plota a curva do f10.7 de forma flúida, suavizada com kernel gaussiano.
