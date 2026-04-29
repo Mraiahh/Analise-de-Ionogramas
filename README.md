@@ -79,3 +79,8 @@ Percorre as colunas, procura a coluna de choque e divide os gráficos em três c
 Lê o arquivo, faz o gráfico de colunas empilhado separado por anos e plota a curva do f10.7 de forma flúida, suavizada com kernel gaussiano.
 Inspirado no gráfico da Figura 3 no artigo ' Abnormal fb Es enhancements in equatorial Es layers during magnetic storms of solar cycle 23' de L.C.A. Resende, C.M. Denardini, I.S. Batista  
 <img width="1200" height="600" alt="anual e f10 7" src="https://github.com/user-attachments/assets/a1648a3c-f2b1-4b97-8181-6e9b51d140e9" />
+
+### graf_sjc_ftEs.py
+Lê todas as abas do arquivo Excel e faz o gráfico com os dias perturbados em evidência e a média e desvio padrão dos dias calmos em cinza. Versão 1: ainda precisa arrumar o desvio padrão.
+Inspirado no gráfico da Figura 4 do artigo 'Occurrence and Modeling Examination of Sporadic‐E Layers in the Region of the South America (Atlantic) Magnetic Anomaly' de Fredson Conceição‐Santos, Marcio T. A. H. Muella, Laysa C. A. Resende, Paulo R. Fagundes, Vania F. Andrioli, Paulo P. Batista, Valdir G. Pillat e Alexander J. Carrasco
+<img width="1200" height="400" alt="evento4_sjc" src="https://github.com/user-attachments/assets/7997b8a3-7b82-48b4-8920-529d7b12ecd7" />
