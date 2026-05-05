@@ -99,7 +99,6 @@ def plot_evento_com_bins(num_evento, save=True):
         else:
             ax.tick_params(axis='y', labelleft=False)
 
-    # Legenda única
     legend_elements = [
         Line2D([0], [0], color='gray', lw=1.5, label='Média Calmos (Bins 30min)'),
         Line2D([0], [0], color='red', lw=1.2, label='Dia Perturbado'),
